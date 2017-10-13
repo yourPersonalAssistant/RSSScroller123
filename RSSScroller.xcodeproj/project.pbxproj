@@ -14,6 +14,9 @@
 		84E1595A1F8E69F500B419CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E159581F8E69F500B419CC /* LaunchScreen.storyboard */; };
 		84E159651F8E69F600B419CC /* RSSScrollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E159641F8E69F600B419CC /* RSSScrollerTests.swift */; };
 		84E159701F8E69F600B419CC /* RSSScrollerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1596F1F8E69F600B419CC /* RSSScrollerUITests.swift */; };
+		84E1597E1F8E6A7D00B419CC /* ScrollerUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1597D1F8E6A7D00B419CC /* ScrollerUITableViewController.swift */; };
+		84E159801F8E6AA900B419CC /* ScrollerUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1597F1F8E6AA900B419CC /* ScrollerUIViewController.swift */; };
+		84E159841F8E6B0600B419CC /* ScrollerXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E159831F8E6B0600B419CC /* ScrollerXMLParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		84E1596B1F8E69F600B419CC /* RSSScrollerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSScrollerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E1596F1F8E69F600B419CC /* RSSScrollerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSScrollerUITests.swift; sourceTree = "<group>"; };
 		84E159711F8E69F600B419CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84E1597D1F8E6A7D00B419CC /* ScrollerUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerUITableViewController.swift; sourceTree = "<group>"; };
+		84E1597F1F8E6AA900B419CC /* ScrollerUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerUIViewController.swift; sourceTree = "<group>"; };
+		84E159831F8E6B0600B419CC /* ScrollerXMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerXMLParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,9 @@
 		84E159431F8E69F500B419CC = {
 			isa = PBXGroup;
 			children = (
+				84E1597D1F8E6A7D00B419CC /* ScrollerUITableViewController.swift */,
+				84E1597F1F8E6AA900B419CC /* ScrollerUIViewController.swift */,
+				84E159831F8E6B0600B419CC /* ScrollerXMLParser.swift */,
 				84E1594E1F8E69F500B419CC /* RSSScroller */,
 				84E159631F8E69F600B419CC /* RSSScrollerTests */,
 				84E1596E1F8E69F600B419CC /* RSSScrollerUITests */,
@@ -259,7 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E159801F8E6AA900B419CC /* ScrollerUIViewController.swift in Sources */,
 				84E159521F8E69F500B419CC /* ViewController.swift in Sources */,
+				84E1597E1F8E6A7D00B419CC /* ScrollerUITableViewController.swift in Sources */,
+				84E159841F8E6B0600B419CC /* ScrollerXMLParser.swift in Sources */,
 				84E159501F8E69F500B419CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
