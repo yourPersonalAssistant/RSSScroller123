@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ScrollerUI View Controller-->
+        <!--Current ArticleUI View Controller-->
         <scene sceneID="uSU-Qg-Kze">
             <objects>
-                <viewController storyboardIdentifier="idScrollerUIViewController" id="Mjt-dd-ysO" customClass="ScrollerUIViewController" customModule="RSSScroller" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4sa-5s-Ul2">
+                <viewController storyboardIdentifier="idScrollerUIViewController" id="Mjt-dd-ysO" customClass="CurrentArticleUIViewController" customModule="RSSScroller" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="4sa-5s-Ul2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Article Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmE-97-r7y">
-                                <rect key="frame" x="114.5" y="323.5" width="148" height="20.5"/>
+                                <rect key="frame" x="113.5" y="-10" width="148" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILL-oZ-2V3">
+                            <wkWebView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ILL-oZ-2V3">
                                 <rect key="frame" x="0.0" y="64" width="375" height="609"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -57,10 +57,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lmE-97-r7y" firstAttribute="centerX" secondItem="4sa-5s-Ul2" secondAttribute="centerX" id="9x4-5i-kPv"/>
                             <constraint firstItem="ILL-oZ-2V3" firstAttribute="trailing" secondItem="Gi9-V4-4sQ" secondAttribute="trailing" id="D7b-P3-2So"/>
                             <constraint firstItem="ILL-oZ-2V3" firstAttribute="centerX" secondItem="4sa-5s-Ul2" secondAttribute="centerX" id="EcJ-yj-ftS"/>
                             <constraint firstItem="lmE-97-r7y" firstAttribute="centerX" secondItem="4sa-5s-Ul2" secondAttribute="centerX" id="HNb-BO-Nur"/>
                             <constraint firstItem="ILL-oZ-2V3" firstAttribute="leading" secondItem="vkQ-zq-duF" secondAttribute="leading" id="Jou-3x-0fR"/>
+                            <constraint firstItem="lmE-97-r7y" firstAttribute="centerY" secondItem="4sa-5s-Ul2" secondAttribute="centerY" id="LrV-Yz-YCc"/>
                             <constraint firstItem="ILL-oZ-2V3" firstAttribute="leading" secondItem="Gi9-V4-4sQ" secondAttribute="leading" id="NLk-gY-ut6"/>
                             <constraint firstItem="lmE-97-r7y" firstAttribute="centerY" secondItem="4sa-5s-Ul2" secondAttribute="centerY" id="PAC-SF-cWw"/>
                             <constraint firstItem="ILL-oZ-2V3" firstAttribute="leading" secondItem="4sa-5s-Ul2" secondAttribute="leading" id="RGW-b1-KOa"/>
@@ -79,17 +81,17 @@
                         <viewLayoutGuide key="safeArea" id="Gi9-V4-4sQ"/>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="ILL-oZ-2V3" id="uPV-ka-8Qf"/>
+                        <outlet property="webView" destination="ILL-oZ-2V3" id="ZmR-Lq-5St"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2m-wE-H4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="605.60000000000002" y="1055.6221889055473"/>
+            <point key="canvasLocation" x="526" y="1268"/>
         </scene>
         <!--RSS Scroller-->
         <scene sceneID="BKC-yd-nak">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="gwb-Sg-j3J" customClass="ScrollerUITableViewController" customModule="RSSScroller" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="gwb-Sg-j3J" customClass="ArticlesListUITableViewController" customModule="RSSScroller" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XYE-8o-91W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,10 +121,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="RSS Scroller" id="Opt-k6-2cJ"/>
+                    <connections>
+                        <segue destination="Mjt-dd-ysO" kind="showDetail" identifier="showDetail" id="MZT-2u-onL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Tp-hk-AcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1559" y="392"/>
+            <point key="canvasLocation" x="1476" y="392"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="saa-I5-xLC">
@@ -154,4 +159,7 @@
             <point key="canvasLocation" x="-314" y="642"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MZT-2u-onL"/>
+    </inferredMetricsTieBreakers>
 </document>
