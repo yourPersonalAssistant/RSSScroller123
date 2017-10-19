@@ -13,16 +13,21 @@ import UIKit
 }
 
 class RSSDataManager: NSObject {
+  private var feedURL: URL
   public var delegate: RSSDataManagerDelegate?
 
-  func getRSSDataFromFeedURL(feedURL: URL) {
-    let xmlParser = ScrollerXMLParser()
-    xmlParser.delegate = self
-    xmlParser.startParsingContentFromURL(rssURL: feedURL)
+    init(feedURL: URL) {
+        self.feedURL = feedURL
+    }
+
+  func getRSSDataFromFeedURL() {
+    let networkDataManager = NetworkDataManager()
+    networkDataManager.delegate = self
+    networkDataManager.downloadDataFromUrl(url: feedURL)
   }
 }
 
-// MARK: anXMLParserDelegate
+// MARK: - ScrollerXMLParserDelegate
 extension RSSDataManager: ScrollerXMLParserDelegate {
     func parsingWasFinished(listOfRawParsedArticles: [Dictionary<String, String>]) {
     var articles: [Article] = []
@@ -36,4 +41,13 @@ extension RSSDataManager: ScrollerXMLParserDelegate {
 
     delegate?.dataLoaded(articles: articles)
   }
+}
+
+//MARK: - NetworkDataManagerDelegate
+extension RSSDataManager: NetworkDataManagerDelegate {
+    func dataWasDownloaded(rawNetworkData: Data) {
+        let xmlParser = ScrollerXMLParser()
+        xmlParser.delegate = self
+        xmlParser.startParsingContentFromData(rawNetworkData: rawNetworkData)
+    }
 }

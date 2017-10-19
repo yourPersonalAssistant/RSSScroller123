@@ -14,14 +14,14 @@ class ArticlesListUITableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         splitViewController?.delegate = self
         self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
 
         let feedUrl = URL(string: "http://feeds.bbci.co.uk/news/rss.xml")
-        let rssDataManager = RSSDataManager()
+        let rssDataManager = RSSDataManager(feedURL: feedUrl!)
         rssDataManager.delegate = self
-        rssDataManager.getRSSDataFromFeedURL(feedURL: feedUrl!)
+        rssDataManager.getRSSDataFromFeedURL()
 
         // Auto layout constraints for rows' height in table view.
         self.tableView.rowHeight = UITableViewAutomaticDimension

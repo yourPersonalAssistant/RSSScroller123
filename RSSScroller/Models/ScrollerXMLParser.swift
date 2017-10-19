@@ -20,10 +20,10 @@ class ScrollerXMLParser: NSObject, XMLParserDelegate {
 
   public var delegate: ScrollerXMLParserDelegate?
 
-  func startParsingContentFromURL(rssURL: URL) {
-    let parser = XMLParser(contentsOf: rssURL)
-    parser?.delegate = self
-    parser?.parse()
+    func startParsingContentFromData(rawNetworkData: Data) {
+    let parser = XMLParser(data: rawNetworkData)
+    parser.delegate = self
+    parser.parse()
   }
 
   func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]){
