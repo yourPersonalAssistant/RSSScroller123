@@ -1,5 +1,5 @@
 //
-//  XMLData.swift
+//  RSSDataManager.swift
 //  RSSScroller
 //
 //  Created by admin on 10/13/17.
@@ -8,46 +8,30 @@
 
 import UIKit
 
-@objc protocol RSSDataManagerDelegate {
-  func dataLoaded(articles: [Article])
-}
-
 class RSSDataManager: NSObject {
   private var feedURL: URL
-  public var delegate: RSSDataManagerDelegate?
 
     init(feedURL: URL) {
         self.feedURL = feedURL
     }
 
-  func getRSSDataFromFeedURL() {
-    let networkDataManager = NetworkDataManager()
-    networkDataManager.delegate = self
-    networkDataManager.downloadDataFromUrl(url: feedURL)
-  }
-}
+    func getRSSDataFromFeedURL(completion: @escaping (_ articles: [Article]) -> Void) {
+    let downloader = DataDownloader()
+        downloader.downloadDataFromUrl(url: feedURL, completion:{(rawNetworkData: Data) -> Void in
 
-// MARK: - ScrollerXMLParserDelegate
-extension RSSDataManager: ScrollerXMLParserDelegate {
-    func parsingWasFinished(listOfRawParsedArticles: [Dictionary<String, String>]) {
-    var articles: [Article] = []
-
-    for rawParsedArticle in listOfRawParsedArticles {
-      let article = Article()
-      article.title = rawParsedArticle["title"]
-        article.url = URL(string: rawParsedArticle["link"]!)!
-      articles.append(article)
-    }
-
-    delegate?.dataLoaded(articles: articles)
-  }
-}
-
-//MARK: - NetworkDataManagerDelegate
-extension RSSDataManager: NetworkDataManagerDelegate {
-    func dataWasDownloaded(rawNetworkData: Data) {
         let xmlParser = ScrollerXMLParser()
-        xmlParser.delegate = self
-        xmlParser.startParsingContentFromData(rawNetworkData: rawNetworkData)
-    }
+        xmlParser.startParsingContentFromData(rawNetworkData: rawNetworkData, completion: {(listOfRawParsedArticles: [Dictionary<String, String>]) -> Void in
+            var articles: [Article] = []
+
+            for rawParsedArticle in listOfRawParsedArticles {
+                let article = Article()
+                article.title = rawParsedArticle["title"]
+                article.url = URL(string: rawParsedArticle["link"]!)!
+                articles.append(article)
+            }
+            completion(articles)
+        })
+
+    })
+  }
 }

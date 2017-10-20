@@ -8,21 +8,17 @@
 
 import UIKit
 
-@objc protocol ScrollerXMLParserDelegate {
-  func parsingWasFinished(listOfRawParsedArticles: [Dictionary<String, String>])
-}
-
 class ScrollerXMLParser: NSObject, XMLParserDelegate {
   private var currentDataDictionary = Dictionary<String, String>()
   private var currentElement = ""
   private var foundCharacters = ""
   private var listOfRawParsedArticles = [Dictionary<String, String>]()
+  private var parsingCompletionHandler: ((_ listOfRawParsedArticles: [Dictionary<String,String>]) -> Void)?
 
-  public var delegate: ScrollerXMLParserDelegate?
-
-    func startParsingContentFromData(rawNetworkData: Data) {
+    func startParsingContentFromData(rawNetworkData: Data, completion:@escaping (_ listOfRawArticles: [Dictionary<String,String>]) -> Void) {
     let parser = XMLParser(data: rawNetworkData)
     parser.delegate = self
+    parsingCompletionHandler = completion
     parser.parse()
   }
 
@@ -49,7 +45,7 @@ class ScrollerXMLParser: NSObject, XMLParserDelegate {
   }
 
   func parserDidEndDocument(_ parser: XMLParser) {
-    delegate?.parsingWasFinished(listOfRawParsedArticles: listOfRawParsedArticles)
+    parsingCompletionHandler!(listOfRawParsedArticles)
   }
 
   // Error Reporting.

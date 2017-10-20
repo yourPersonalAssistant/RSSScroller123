@@ -1,5 +1,5 @@
 //
-//  ScrollerUITableViewController.swift
+//  ArticlesListUITableViewController.swift
 //  RSSScroller
 //
 //  Created by admin on 10/11/17.
@@ -20,8 +20,12 @@ class ArticlesListUITableViewController: UITableViewController {
 
         let feedUrl = URL(string: "http://feeds.bbci.co.uk/news/rss.xml")
         let rssDataManager = RSSDataManager(feedURL: feedUrl!)
-        rssDataManager.delegate = self
-        rssDataManager.getRSSDataFromFeedURL()
+        rssDataManager.getRSSDataFromFeedURL(completion: {(articles: [Article]) -> Void in
+            for article in articles {
+                self.articlesList.append(article)
+            }
+            self.tableView.reloadData()
+        })
 
         // Auto layout constraints for rows' height in table view.
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -59,16 +63,5 @@ class ArticlesListUITableViewController: UITableViewController {
 extension ArticlesListUITableViewController: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
-    }
-}
-
-// MARK: - RSSDataDelegate
-extension ArticlesListUITableViewController: RSSDataManagerDelegate {
-
-    func dataLoaded(articles: [Article]) {
-        for article in articles {
-            articlesList.append(article)
-        }
-        self.tableView.reloadData()
     }
 }

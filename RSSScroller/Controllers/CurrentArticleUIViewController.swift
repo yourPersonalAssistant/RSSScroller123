@@ -1,5 +1,5 @@
 //
-//  ScrollerUIViewController.swift
+//  CurrentArticleUIViewController.swift
 //  RSSScroller
 //
 //  Created by admin on 10/11/17.
